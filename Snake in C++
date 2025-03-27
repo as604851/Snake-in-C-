@@ -1,0 +1,219 @@
+
+#include <iostream> 
+#include <conio.h> 
+#include <algorithm>
+#include <iostream>
+#include <conio.h>
+#include <string>
+#include <windows.h>
+
+#include <stdio.h>
+
+
+using namespace std;
+
+
+#pragma warning(suppress : 4996)
+#pragma warning(disable : 4996)
+
+
+void printBoard(char board[9][9]) {
+    std::cout << ' '; for (int i = 0; i < 17; i++) { std::cout << '_' ; }std::cout << std::endl;
+    for (int i = 0; i < 9; i++) {
+        std::cout << '|';
+        for (int j = 0; j < 9; j++) {
+            std::cout << board[i][j] << " ";
+        }std::cout << '|';
+        std::cout << std::endl;
+    }
+    std::cout << ' '; for (int i = 0; i < 17; i++) { std::cout <<'-'; }std::cout << std::endl;
+}
+
+int main() {
+neu:
+    // Reversi Startfeld
+    char f[9][9] = {
+        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+        {' ', ' ', ' ', 'r', 'r', 'r', ' ', ' ', ' '},
+        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+        {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+    };
+    
+   // printBoard(f);
+    int x, y, a, b, e;
+    e = 0;
+    a = 3;
+    b = 5;
+    f[a][b] = 'r';
+    int wert = 0;
+    y = a;
+    x = b;
+    int ki = 77;
+    int food = 0;
+    /*   f[4][6] = 'o';
+       f[4][1] = 'o';*/
+    int zx = 0;
+    int zy = 0;
+    char r = ' ';
+    int m, n;
+    int y1, y2;
+    char g,k,kb,kc;
+    int speed;
+    speed = 150;
+    kb = 0;
+    kb = ki;
+    kc = 0;
+    int z = 0;
+start:
+
+    //printBoard(f);
+
+    while (f[y][x] != ' ') {
+
+        z++;
+        if (z > 200)goto neu;
+        if (f[y][x] == 'd') {
+            y--; if (y < 0)y = 8;  if (f[y][x] == r) { y++; if (y > 8)y = 0; if (e == 1) { r = 'd'; f[y][x] = r; r = ' '; m = y; n = x; e = 0; break; } else { f[y][x] = r; m = y; n = x;  break; } } m = y; n = x;
+        }
+        if (f[y][x] == 'u') { y++; if (y > 8)y = 0;  if (f[y][x] == r) { y--; if (y < 0)y = 8; if (e == 1) { r = 'u'; f[y][x] = r; r = ' '; m = y; n = x; e = 0; break; } else { f[y][x] = r; m = y; n = x;  break; } } m = y; n = x; }
+        if (f[y][x] == 'r') { x--; if (x < 0)x = 8;  if (f[y][x] == r) { x++; if (x > 8)x = 0; if (e == 1) { r = 'r'; f[y][x] = r; r = ' '; m = y; n = x; e = 0; break; } else { f[y][x] = r; m = y; n = x;  break; } } m = y; n = x; }
+        if (f[y][x] == 'l') { x++; if (x > 8)x = 0;  if (f[y][x] == r) { x--; if (x < 0)x = 8; if (e == 1) { r = 'l'; f[y][x] = r; r = ' '; m = y; n = x; e = 0; break; } else { f[y][x] = r; m = y; n = x;  break; } } m = y; n = x; }
+
+    }
+    z = 0;
+    zx = 0;
+    zx = 0;
+    y1 = x;
+    y2 = y;
+
+    //
+    //if (_kbhit()) {
+
+    //    
+    //    if (speed < 500 ) {
+    //        ki = _getch(); if (ki == 's') { speed = speed + 20; } if (ki == 'w') { speed = speed - 20; }
+    //        else speed = 30;
+    //    }
+    //    
+    //    /*else { speed = 490; }*/
+    //}
+//    //ki = kb;
+//nochmal:
+//
+//    if (_kbhit()) { ki = _getch(); if (ki == 's') goto nochmal; }
+//
+           kb = ki;
+
+           if (_kbhit()) { ki = _getch(); }
+   
+           if (ki == 's' ) { if(speed<300)speed = speed + 20; ki = kb;
+           }
+           if (ki == 'w') {  if (speed > 50)speed = speed - 20; ki = kb;
+           }
+           if (ki == 'q') {
+               speed = 150; ki = kb;
+           }
+
+           
+    Sleep(speed);
+
+   /* std::cout << speed << std::endl;   */
+
+    //down
+    if (ki == 80) {
+        a++;
+        if (a > 8) a = 0;
+        if (f[a][b] == 'o') { e = 1; food = 0; wert = wert + 10; }
+        f[a][b] = 'd';    g = f[y][x];
+        f[y][x] = 'e';
+
+        system("CLS");
+        //f[y][x] = 'e';
+        printBoard(f); std::cout << "score: " << wert << endl;  std::cout << speed << std::endl;
+        f[y][x] = g;
+        y = a; x = b; kb = ki;
+
+        //if (zx == 1) { zx = 0;  }
+    }
+
+    //up
+    if (ki == 72) {
+        a--;
+        if (a < 0) a = 8;
+        if (f[a][b] == 'o') { e = 1; food = 0; wert = wert + 10; }
+        f[a][b] = 'u';    g = f[y][x];
+        f[y][x] = 'e';
+
+        system("CLS");
+        //f[y][x] = 'e';
+        printBoard(f);
+        std::cout << "score: " << wert << endl;  std::cout << speed << std::endl;
+        f[y][x] = g;
+        y = a;
+        x = b; kb = ki;
+
+    }
+
+    //right
+    if (ki == 77) {
+        b++;
+        if (b > 8) b = 0;
+        if (f[a][b] == 'o') { e = 1; food = 0; wert = wert + 10; }
+        f[a][b] = 'r';    g = f[y][x];
+        f[y][x] = 'e';
+
+        system("CLS");
+        //f[y][x] = 'e';
+        printBoard(f); std::cout << "score: " << wert << endl;  std::cout << speed << std::endl;
+        f[y][x] = g; zx = 1;
+        y = a;
+        x = b; kb = ki;;
+    }
+
+    //left
+    if (ki == 75) {
+        b--;
+        if (b < 0) b = 8;
+        if (f[a][b] == 'o') { e = 1; food = 0; wert = wert + 10; }
+        f[a][b] = 'l';     g = f[y][x];
+        f[y][x] = 'e';
+
+        system("CLS");
+        //f[y][x] = 'e';
+        printBoard(f); std::cout << "score: " << wert << endl;  std::cout << speed << std::endl;
+        f[y][x] = g; zx = 1;
+        y = a;
+        x = b; kb = ki;
+
+    }
+
+
+
+    if (food == 0) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (rand() % 10 > 8 && f[i][j] == ' ' && i != m && j != n) { f[i][j] = 'o'; food = 1; goto start1; }
+            }
+
+        }
+
+    }
+
+start1:
+
+
+    goto start;
+
+
+
+    return 0;
+}
+
+
+
+
