@@ -30,6 +30,7 @@ void printBoard(char board[9][9]) {
 }
 
 int main() {
+    system("mode con: cols=28 lines=18");
 neu:
     // Reversi Startfeld
     char f[9][9] = {
@@ -69,6 +70,7 @@ neu:
     kb = ki;
     kc = 0;
     int z = 0;
+    int speed1;
 start:
 
     //printBoard(f);
@@ -121,6 +123,8 @@ start:
 
            
     Sleep(speed);
+    
+
 
    /* std::cout << speed << std::endl;   */
 
@@ -134,7 +138,9 @@ start:
 
         system("CLS");
         //f[y][x] = 'e';
-        printBoard(f); std::cout << "score: " << wert << endl;  std::cout << speed << std::endl;
+        printBoard(f); std::cout << "score: " << wert << endl;  std::cout << "Time-delay: " << speed << "ms" << std::endl;
+        std::cout << "Press w to increase speed" << std::endl;
+        std::cout << "Press s to decrease speed" << std::endl;
         f[y][x] = g;
         y = a; x = b; kb = ki;
 
@@ -152,7 +158,9 @@ start:
         system("CLS");
         //f[y][x] = 'e';
         printBoard(f);
-        std::cout << "score: " << wert << endl;  std::cout << speed << std::endl;
+        std::cout << "score: " << wert << endl;  std::cout << "Time-delay: " << speed << "ms" << std::endl;
+        std::cout << "Press w to increase speed" << std::endl;
+        std::cout << "Press s to decrease speed" << std::endl;
         f[y][x] = g;
         y = a;
         x = b; kb = ki;
@@ -169,7 +177,9 @@ start:
 
         system("CLS");
         //f[y][x] = 'e';
-        printBoard(f); std::cout << "score: " << wert << endl;  std::cout << speed << std::endl;
+        printBoard(f); std::cout << "score: " << wert << endl;  std::cout << "Time-delay: " << speed << "ms" << std::endl;
+        std::cout << "Press w to increase speed" << std::endl;
+        std::cout << "Press s to decrease speed" << std::endl;
         f[y][x] = g; zx = 1;
         y = a;
         x = b; kb = ki;;
@@ -185,7 +195,9 @@ start:
 
         system("CLS");
         //f[y][x] = 'e';
-        printBoard(f); std::cout << "score: " << wert << endl;  std::cout << speed << std::endl;
+        printBoard(f); std::cout << "score: " << wert << endl;  std::cout << "Time-delay: " << speed << "ms" << std::endl;
+        std::cout << "Press w to increase speed" << std::endl;
+        std::cout << "Press s to decrease speed" << std::endl;
         f[y][x] = g; zx = 1;
         y = a;
         x = b; kb = ki;
